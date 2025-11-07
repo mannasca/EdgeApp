@@ -1,42 +1,232 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* === GLOBAL === */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #121417;
+  color: #e8eaf6;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === MAIN CONTAINER === */
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === CARD === */
+.form-card {
+  background: #1e2125;
+  border: 1px solid #2e3135;
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+/* === HEADINGS === */
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #bbdefb;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #b0bec5;
+  margin-bottom: 1.5rem;
+}
+
+/* === FIXED 2-COLUMN GRID (with visible spacing) === */
+.needs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;  /* space between columns */
+  row-gap: 1rem;     /* space between rows */
+  margin-bottom: 1.5rem;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+/* Keep same layout on all devices */
+@media (max-width: 400px) {
+  .needs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0.8rem;
+    row-gap: 0.8rem;
+  }
+}
+
+/* === NEED CARDS === */
+.need-widget {
+  background: #2a2d32;
+  border: 1px solid #39424e;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: #e8eaf6;
+  width: 100%;               /* ensures proper scaling inside grid */
+  box-sizing: border-box;    /* consistent border/padding spacing */
+}
+
+.need-widget:hover {
+  border-color: #64b5f6;
+}
+
+.need-widget.selected {
+  background-color: #2196f3;
+  color: #fff;
+  border-color: #2196f3;
+  transform: scale(1.01);
+}
+
+
+/* === QUANTITY INPUT === */
+.need-header {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.qty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.qty-container label {
+  font-size: 0.85rem;
+  color: #cfd8dc;
+}
+
+.qty-input {
+  width: 55px;
+  padding: 0.35rem;
+  background: #121417;
+  color: #fff;
+  border: 1px solid #5c6bc0;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.need-widget.selected .qty-input {
+  background: #f5f5f5;
+  color: #000;
+}
+
+/* === URGENCY SECTION === */
+.section-title {
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+  color: #bbdefb;
+}
+
+.urgency-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.urgency-btn {
+  flex: 1;
+  background: #2a2d32;
+  color: #e8eaf6;
+  border: 1px solid #39424e;
+  border-radius: 6px;
+  padding: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.urgency-btn:hover {
+  border-color: #64b5f6;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.urgency-btn.active {
+  background: #64b5f6;
+  color: #000;
+}
+
+/* === SEND BUTTON === */
+.send-btn {
+  width: 100%;
+  background: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+.send-btn:hover {
+  background: #1976d2;
+}
+
+/* === STATUS === */
+.status {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.status.success {
+  color: #4caf50;
+}
+
+.status.error {
+  color: #e53935;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .form-card {
+    padding: 1.2rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  h1 {
+    font-size: 1.3rem;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .need-widget {
+    font-size: 0.95rem;
+    padding: 0.9rem;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .qty-input {
+    width: 50px;
+  }
 
-.read-the-docs {
-  color: #888;
+  .send-btn {
+    font-size: 0.95rem;
+  }
 }
